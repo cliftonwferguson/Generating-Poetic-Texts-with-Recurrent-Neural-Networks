@@ -15,5 +15,14 @@ characters = sorted(set(text))
 char_to_index = dict((c, i)for i, c in enumerate(characters))
 index_to_char = dict((i, c)for i, c in enumerate(characters))
 
+SEQ_Length = 40
+Step_Size = 3
+
 sentences = []
 next_characters = []
+
+for i in range(0, len(text) - SEQ_Length, Step_Size):
+    sentences.append(text[i: i+SEQ_Length])
+    next_characters.append(text[i: i+SEQ_Length])
+
+    x = np.zeros(len(sentences), SEQ_Length, len(characters), dtype=np.bool)
